@@ -20,10 +20,11 @@ var fetchResults = function(movieInputEl) {
     };
     
     var handleSearch = function() {
-        notify.classList.add("hidden")
         var search = movieInputEl.value.trim();
         fetchResults(search);
         console.log(search); 
     };
 
-searchBtnEl.addEventListener("click", handleSearch);
+searchBtnEl.addEventListener("click", handleSearch, function(event) {
+    event.preventDefault();
+});
