@@ -28,3 +28,11 @@ var fetchResults = function(movieInputEl) {
 searchBtnEl.addEventListener("click", handleSearch, function(event) {
     event.preventDefault();
 });
+
+var fetchVideos = function () {
+    var apiUrl = ""
+}
+
+var displayResults = function() {
+
+}
