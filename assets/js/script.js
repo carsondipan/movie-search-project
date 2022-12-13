@@ -2,10 +2,26 @@
 
 var searchBtnEl = document.querySelector("#searchBtn");
 var movieInputEl = document.querySelector("#movie-input");
+var movieDetailsEl = document.querySelector("#movie-details");
+
+var apiKey = "f026d548";
+
+
+var displayMovieDetails = function (search) {
+    currentMovie.innerHTML = null;
+    var movieTitle = document.createElement("h2");
+    movieTitle.class = "movie-title";
+    
+}
+
+
+
+
+
 
 
 var fetchResults = function(movieInputEl) {
-    var apiUrl = "http://www.omdbapi.com/?s=" + movieInputEl + "&apikey=f026d548";
+    var apiUrl = `http://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`;
     
     fetch(apiUrl)
         .then(function (response) {
