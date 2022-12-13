@@ -25,9 +25,18 @@ var displayMovieDetails = function (Search) {
     movieDetailsEl.append(movieTitle, moviePoster, mediaType, releaseDate);
 };
 
+var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
+// var youtubeSearchCri = movieInputEl + releaseDate;
 
+// var youtubeApiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${youtubeSearchCri}&key=${youtubeApiKey}`
+
+var youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=StarWarsEpisodeIV-ANewHope-movie-review&key=AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4';
 
 // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=[YOUR_API_KEY]'
+
+fetch(youtubeApiUrl)
+.then(res => res.json())
+.then(data => console.log(data));
 
 
 
