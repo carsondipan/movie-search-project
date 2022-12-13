@@ -5,9 +5,32 @@ display: none;
 h1 {
 font-size: 52px;
 font-weight: 800;
+color: #DE932C;
 }
     
 h2 {
 font-size: 40px;
 font-weight: 600;
+}
+
+.bg-custom {
+    background-color: #262628;
+
+}
+
+.bg-customnav  {
+    background-color: #1967BA ;
+    border-color: #DE932C;
+}
+
+#searchBtn {
+    background-color: #F49940;
+    color: black
+    
+}
+
+.card {
+    background-color: rgb(202, 201, 201);
+    margin-top: 16px;
+
 }
