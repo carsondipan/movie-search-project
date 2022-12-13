@@ -22,6 +22,7 @@ var displayMovieDetails = function (Search) {
     var releaseDate = document.createElement("h2");
     releaseDate.className = "release-date text-center mb-4";
     releaseDate.textContent = "Release Date: " + Search.Search[0].Year;
+    
     movieDetailsEl.append(movieTitle, moviePoster, mediaType, releaseDate);
 };
 
@@ -38,7 +39,7 @@ fetch(youtubeApiUrl)
 .then(res => res.json())
 .then(data => console.log(data));
 
-
+var youtubeSearchCri = movieInputEl + releaseDate.textContent + Search.Search[0].Year;
 
 var fetchResults = function(movieInputEl) {
     var apiUrl = `http://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`;
