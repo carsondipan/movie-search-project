@@ -10,25 +10,25 @@
     <title>Movie Search!</title>
 </head>
 
-<body>
+<body class="bg-custom">
     <header>
-        <section class="navbar navbar-light bg-light justify-content-around px-4">
+        <section class="navbar navbar-light border bg-customnav justify-content-around px-4 mb-2">
             <h1>Movie Search</h1>
                 <input class=" mr-sm-2" id="movie-input" type="search"  placeholder="Search a movie title!"
                     aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
+                <button class="btn-lg px-4 btn-outline-success my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
                 </input>
         </section>
     </header>
-    <main class="row">
-        <aside class="col-6" id="left-side">
+    <main class="row justify-content-center">
+        <aside class="col-5 mr-4" id="left-side">
                     <div class="card" id="movie-details">
                         <a href="#" class="btn btn-primary mb-4 hidden" id="IMDB-btn">IMDB Page</a>
                     </div>
         </aside>
-        <aside class="col-6" id="right=side">
+        <aside class="col-5 ml-4" id="right-side">
                 <div class="card">
-                    <div class="card-body min-vh-100">
+                    <div class="card-body">
                         <h5 class="card-title">Movie Trailers and Clips</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="#" class="btn btn-primary mb-4">Go somewhere</a>
