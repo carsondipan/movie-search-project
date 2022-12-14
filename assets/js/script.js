@@ -36,7 +36,7 @@ var displayYoutubeUrl = function (data) {
     youtubeLink.setAttribute('href', imdbID)
     // youtubeLink.textContent
 
-}
+};
 
 var fetchimdbID = function(search) {
     var imdbID = search.Search[0].imdbID;
@@ -105,6 +105,7 @@ var savePreviousSearch = function(search) {
 var handleSearch = function() {
     var search = movieInputEl.value.trim();
     fetchResults(search);
+    savePreviousSearch(search);
     console.log(search);
 };
 
