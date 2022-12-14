@@ -6,22 +6,37 @@ var imdbBtnEl = document.querySelector("#IMDB-btn");
 var youtubeVideoEl = document.querySelector("#youtube-video");
 var apiKey = "f026d548";
 
-var displayMovieDetails = function (Search) {
+var displayMovieDetails = function (search) {
     movieDetailsEl.innerHTML = null;
     var movieTitle = document.createElement("h2");
     movieTitle.className = "movie-title text-center my-4";
-    movieTitle.textContent = "Movie Title: " + Search.Search[0].Title;
+    movieTitle.textContent = "Movie Title: " + search.Search[0].Title;
     var moviePoster = document.createElement("img");
     moviePoster.className = "movie-poster mb-4 mx-auto d-block";
-    moviePoster.src = Search.Search[0].Poster;
+    moviePoster.src = search.Search[0].Poster;
     var mediaType = document.createElement("h2");
     mediaType.className = "media-type text-center mb-4";
-    mediaType.textContent = "Media Type: " + Search.Search[0].Type.toUpperCase();
+    mediaType.textContent = "Media Type: " + search.Search[0].Type.toUpperCase();
     var releaseDate = document.createElement("h2");
     releaseDate.className = "release-date text-center mb-4";
-    releaseDate.textContent = "Release Date: " + Search.Search[0].Year;
+    releaseDate.textContent = "Release Date: " + search.Search[0].Year;
     movieDetailsEl.append(movieTitle, moviePoster, mediaType, releaseDate);
 };
+
+var fetchTrailer = function(search){
+    var searchQuery = search.Search[0].Title + " " + search.Search[0].year;
+    var youtubeUrl = "";
+    fetch(youtubeUrl)
+        .then(function(res){
+            return res.json();
+        })
+        .then(function(data){
+            console.log(data);
+        })
+        .catch(function(err){
+            console.log(err);
+        });
+}
 
 var fetchResults = function(movieInputEl) {
     var apiUrl = `http://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`;
@@ -32,6 +47,7 @@ var fetchResults = function(movieInputEl) {
     })
     .then(function (data) {
         displayMovieDetails(data);
+        // fetchTrailer(data);
         imdbBtnEl.classList.remove("hidden");
         console.log(data);
     })
@@ -60,6 +76,9 @@ fetch(youtubeApiUrl)
 .then(res => res.json())
 .then(data => console.log(data));
 
+var getVideos = function () {
+    var youtubeUrl = `http://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`
+}
 // var displayYoutubeVideo = function (items) {
     //     youtubeVideoEl.innerHTML = null;
     //     var youtubePlayer = document.createElement("iframe");
