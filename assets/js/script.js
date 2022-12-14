@@ -6,7 +6,9 @@ var imdbBtnEl = document.querySelector("#IMDB-btn");
 var youtubeVideoEl = document.querySelector("#youtube-video");
 var apiKey = "f026d548";
 var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
-var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM"
+var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM";
+var prevResults = document.querySelector("#prevResults");
+// var youtubeApiKey2 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
 
 var displayMovieDetails = function (search) {
     movieDetailsEl.innerHTML = null;
@@ -69,24 +71,46 @@ var fetchResults = function(movieInputEl) {
     });
 };
 
+var savePreviousSearch = JSON.parse(localStorage.getItem("previousSearch") || "[]")
+    var savePreviousSearch = function (input){
+        var input = movieInputEl.value.trim()
+        if (savePreviousSearch.includes (input)){
+            return
+        } else {
+            savePreviousSearch.push (input);
+            localStorage.setItem ("previousSearch", JSON.stringify (savePreviousSearch));
+            displayPreviousSearch ();
+        }
+    };
+
+    var displayPreviousSearch = function () {
+        prevResults.innerHTML = ""
+
+        for (
+            i = 0; i < savePreviousSearch.length; i ++
+        )
+        var previousSearchBtn = document.createElement("button");
+        previousSearchBtn.className = "btn-lg btn-outline-success";
+        previousSearchBtn.textContent = savePreviousSearch[i];
+        if (prevResults.innerHTML === null) {
+            return;
+        }
+        prevResults.appendChild(previousSearchBtn);
+        previousSearchBtn.addEventListener("click" , (event) => {
+            var repopBtn = event.target.innerHTML;
+            fetchResults (repopBtn);
+        })
+    }
+
+    displayPreviousSearch ()
+
 var handleSearch = function() {
     var search = movieInputEl.value.trim();
     fetchResults(search);
     console.log(search);
 };
 
-// var youtubeApiKey2 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
-// var youtubeSearchCri = movieInputEl + releaseDate;
 
-
-// .then(function (response) {
-//     $(“.video”).empty()
-//     var videoID = (response.items[“0"].id.videoId)
-//    const videoURL = “https://www.youtube.com/embed/” + videoID
-//    $(“.video”).append(`
-//        <iframe class=“border solid 4px border-light” width=“560" height=“315” src=“${videoURL}” frameborder=“0” allow=“accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture” allowfullscreen></iframe>
-//        `)
-//      });
 
 searchBtnEl.addEventListener("click", handleSearch, function(event) {
     event.preventDefault();
