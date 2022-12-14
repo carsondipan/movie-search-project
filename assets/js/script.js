@@ -9,6 +9,7 @@ var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
 var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM";
 var prevResults = document.querySelector("#prev-results");
 // var youtubeApiKey2 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
+var imdbApiKey = "k_9ultv29h";
 
 var displayMovieDetails = function (search) {
     movieDetailsEl.innerHTML = null;
@@ -27,22 +28,21 @@ var displayMovieDetails = function (search) {
     movieDetailsEl.append(movieTitle, moviePoster, mediaType, releaseDate);
 };
 
-var youtubeDisplay = function (search) {
-    youtubeVideoEl.innerHTML = null;
-    var youtubeTrailerTitle = document.createElement("h3");
-    youtubeTrailerTitle.className = "movie-title text-center my-4"
-    youtubeTrailerTitle.textContent = search.Search[0].Title + " " + search.Search[0].Year;
-    var youtubeVideo = document.createElement("iframe");
-    youtubeVideo.className = `border solid 4px border-light” width=“560" height=“315” src=“${youtubeUrl}” frameborder=“0” allow=“accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture” allowfullscreen`;
-    youtubeVideoEl.appendChild(youtubeTrailerTitle);
-    youtubeTrailerTitle.append(youtubeVideo);
-};
+var displayYoutubeUrl = function (data) {
+    movieDetailsEl.innerHTML = null;
+    var imdbID = data.videoUrl;
+    console.log(imdbID);
+    var youtubeLink = document.createElement("a");
+    youtubeLink.setAttribute('href', imdbID)
+    // youtubeLink.textContent
 
-var fetchTrailer = function(search) {
-    var searchQuery = search.Search[0].Title + " " + search.Search[0].Year;
-    console.log(searchQuery)
-    var youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchQuery}${"trailer"}&key=${youtubeApiKey2}`;
-    fetch(youtubeUrl)
+}
+
+var fetchimdbID = function(search) {
+    var imdbID = search.Search[0].imdbID;
+    // console.log(imdbID);
+    var imdbYoutubeUrl = `https://imdb-api.com/API/YouTubeTrailer/${imdbApiKey}/${imdbID}`;
+    fetch(imdbYoutubeUrl)
         .then(function(res){
             return res.json();
         })
@@ -63,7 +63,8 @@ var fetchResults = function(movieInputEl) {
     })
     .then(function (data) {
         displayMovieDetails(data);
-        fetchTrailer(data);
+        fetchimdbID(data);
+        displayYoutubeUrl(data);
         console.log(data);
     })
     .catch(function (error) {
@@ -71,34 +72,35 @@ var fetchResults = function(movieInputEl) {
     });
 };
 
-var displayPreviousSearch = function () {
-    prevResults.innerHTML = "";
-    for (i = 0; i < previousSearch.length; i++) {
-        var previousSearchBtn = document.createElement("button");
-        previousSearchBtn.className = "btn-lg btn-outline-success";
-        previousSearchBtn.textContent = previousSearch[i];
-    if (prevResults.innerHTML === null) {
+var previousSearch = JSON.parse(localStorage.getItem("previousSearch") || "[]");
+var savePreviousSearch = function(search) {
+    var search = movieInputEl.value.trim();
+    console.log(search);
+    if (previousSearch.includes(search)){
         return;
-    }
-    prevResults.appendChild(previousSearchBtn);
-    previousSearchBtn.addEventListener("click", (event) => {
-        var repopBtn = event.target.innerHTML;
-        fetchResults (repopBtn);
-    })
-}
-};
-
-var previousSearch = JSON.parse(localStorage.getItem("previousSearch") || "[]")
-    var savePreviousSearch = function(search){
-        var search = movieInputEl.value.trim()
-        if (previousSearch.includes(search)){
-            return;
-        } else {
-            previousSearch.push(search);
+    } else {
+        previousSearch.push(search);
             localStorage.setItem("previousSearch", JSON.stringify(previousSearch));
             displayPreviousSearch();
         }
     };
+    
+    var displayPreviousSearch = function () {
+        prevResults.innerHTML = "";
+        for (i = 0; i < previousSearch.length; i++) {
+            var previousSearchBtn = document.createElement("button");
+            previousSearchBtn.className = "btn-lg btn-outline-success";
+            previousSearchBtn.textContent = previousSearch[i];
+        if (prevResults.innerHTML === null) {
+            return;
+        }
+        prevResults.appendChild(previousSearchBtn);
+        previousSearchBtn.addEventListener("click", (event) => {
+            var repopBtn = event.target.innerHTML;
+            fetchResults (repopBtn);
+        })
+    }
+};
 
 var handleSearch = function() {
     var search = movieInputEl.value.trim();
