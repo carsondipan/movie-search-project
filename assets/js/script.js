@@ -23,7 +23,7 @@ var displayMovieDetails = function (search) {
     movieDetailsEl.append(movieTitle, moviePoster, mediaType, releaseDate);
 };
 
-var fetchTrailer = function(search){
+var fetchTrailer = function(search) {
     var searchQuery = search.Search[0].Title + " " + search.Search[0].year;
     var youtubeUrl = "";
     fetch(youtubeUrl)
