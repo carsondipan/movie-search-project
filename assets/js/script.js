@@ -29,18 +29,23 @@ var displayMovieDetails = function (search) {
 };
 
 var displayYoutubeUrl = function (data) {
-    movieDetailsEl.innerHTML = null;
-    var imdbID = data.videoUrl;
-    console.log(imdbID);
-    var youtubeLink = document.createElement("a");
-    youtubeLink.setAttribute('href', imdbID)
-    // youtubeLink.textContent
-
+    youtubeVideoEl.innerHTML = null;
+    var videoId = data.videoId;
+    console.log(videoId);
+    var videoURL = `https://www.youtube.com/embed/${videoId}`
+    var iframeEl = document.createElement("iframe");
+    iframeEl.setAttribute("width", "560");
+    iframeEl.setAttribute("height", "315");
+    iframeEl.setAttribute("src", videoURL);
+    iframeEl.setAttribute("frameborder", "0");
+    iframeEl.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    iframeEl.setAttribute("allowfullscreen", 1);
+    console.log(iframeEl)
+    youtubeVideoEl.appendChild(iframeEl);
 };
 
 var fetchimdbID = function(search) {
     var imdbID = search.Search[0].imdbID;
-    // console.log(imdbID);
     var imdbYoutubeUrl = `https://imdb-api.com/API/YouTubeTrailer/${imdbApiKey}/${imdbID}`;
     fetch(imdbYoutubeUrl)
         .then(function(res){
@@ -48,6 +53,7 @@ var fetchimdbID = function(search) {
         })
         .then(function(data){
             console.log(data);
+            displayYoutubeUrl(data);
         })
         .catch(function(err){
             console.log(err);
@@ -64,7 +70,6 @@ var fetchResults = function(movieInputEl) {
     .then(function (data) {
         displayMovieDetails(data);
         fetchimdbID(data);
-        displayYoutubeUrl(data);
         console.log(data);
     })
     .catch(function (error) {
@@ -89,7 +94,7 @@ var savePreviousSearch = function(search) {
         prevResults.innerHTML = "";
         for (i = 0; i < previousSearch.length; i++) {
             var previousSearchBtn = document.createElement("button");
-            previousSearchBtn.className = "btn-lg btn-outline-success";
+            previousSearchBtn.className = "btn-lg btn-outline-success mx-2";
             previousSearchBtn.textContent = previousSearch[i];
         if (prevResults.innerHTML === null) {
             return;
@@ -114,3 +119,4 @@ searchBtnEl.addEventListener("click", handleSearch, function(event) {
 });
 
 displayPreviousSearch ();
+
