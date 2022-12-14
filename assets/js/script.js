@@ -7,7 +7,7 @@ var youtubeVideoEl = document.querySelector("#youtube-video");
 var apiKey = "f026d548";
 var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
 var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM";
-var prevResults = document.querySelector("#prevResults");
+var prevResults = document.querySelector("#prev-results");
 // var youtubeApiKey2 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
 
 var displayMovieDetails = function (search) {
@@ -36,7 +36,7 @@ var youtubeDisplay = function (search) {
     youtubeVideo.className = `border solid 4px border-light” width=“560" height=“315” src=“${youtubeUrl}” frameborder=“0” allow=“accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture” allowfullscreen`;
     youtubeVideoEl.appendChild(youtubeTrailerTitle);
     youtubeTrailerTitle.append(youtubeVideo);
-}
+};
 
 var fetchTrailer = function(search) {
     var searchQuery = search.Search[0].Title + " " + search.Search[0].Year;
@@ -71,38 +71,34 @@ var fetchResults = function(movieInputEl) {
     });
 };
 
-var savePreviousSearch = JSON.parse(localStorage.getItem("previousSearch") || "[]")
-    var savePreviousSearch = function (input){
-        var input = movieInputEl.value.trim()
-        if (savePreviousSearch.includes (input)){
-            return
-        } else {
-            savePreviousSearch.push (input);
-            localStorage.setItem ("previousSearch", JSON.stringify (savePreviousSearch));
-            displayPreviousSearch ();
-        }
-    };
-
-    var displayPreviousSearch = function () {
-        prevResults.innerHTML = ""
-
-        for (
-            i = 0; i < savePreviousSearch.length; i ++
-        )
+var displayPreviousSearch = function () {
+    prevResults.innerHTML = "";
+    for (i = 0; i < previousSearch.length; i++) {
         var previousSearchBtn = document.createElement("button");
         previousSearchBtn.className = "btn-lg btn-outline-success";
-        previousSearchBtn.textContent = savePreviousSearch[i];
-        if (prevResults.innerHTML === null) {
-            return;
-        }
-        prevResults.appendChild(previousSearchBtn);
-        previousSearchBtn.addEventListener("click" , (event) => {
-            var repopBtn = event.target.innerHTML;
-            fetchResults (repopBtn);
-        })
+        previousSearchBtn.textContent = previousSearch[i];
+    if (prevResults.innerHTML === null) {
+        return;
     }
+    prevResults.appendChild(previousSearchBtn);
+    previousSearchBtn.addEventListener("click", (event) => {
+        var repopBtn = event.target.innerHTML;
+        fetchResults (repopBtn);
+    })
+}
+};
 
-    displayPreviousSearch ()
+var previousSearch = JSON.parse(localStorage.getItem("previousSearch") || "[]")
+    var savePreviousSearch = function(search){
+        var search = movieInputEl.value.trim()
+        if (previousSearch.includes(search)){
+            return;
+        } else {
+            previousSearch.push(search);
+            localStorage.setItem("previousSearch", JSON.stringify(previousSearch));
+            displayPreviousSearch();
+        }
+    };
 
 var handleSearch = function() {
     var search = movieInputEl.value.trim();
@@ -110,8 +106,8 @@ var handleSearch = function() {
     console.log(search);
 };
 
-
-
 searchBtnEl.addEventListener("click", handleSearch, function(event) {
     event.preventDefault();
 });
+
+displayPreviousSearch ();
