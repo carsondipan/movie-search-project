@@ -1,3 +1,12 @@
+html, body {
+overflow-x: hidden;
+}
+
+body {
+position: relative
+}
+
+
 .hidden {
 display: none;
 }
@@ -22,11 +31,12 @@ font-weight: 600;
 }
 
 #searchBtn {
-    background-color: #F49940;
+    background-color: #DE932C;
     color: black;
     border-color: #000000;
 }
 
 .card {
     background-color: rgb(202, 201, 201);
+    width: auto;
 }
