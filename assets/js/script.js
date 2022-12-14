@@ -40,6 +40,7 @@ var displayYoutubeUrl = function (data) {
     iframeEl.setAttribute("frameborder", "0");
     iframeEl.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     iframeEl.setAttribute("allowfullscreen", 1);
+    iframeEl.className = "align-self-center";
     console.log(iframeEl)
     youtubeVideoEl.appendChild(iframeEl);
 };
@@ -95,6 +96,7 @@ var savePreviousSearch = function(search) {
         for (i = 0; i < previousSearch.length; i++) {
             var previousSearchBtn = document.createElement("button");
             previousSearchBtn.className = "btn-lg btn-outline-success mx-2";
+            previousSearchBtn.setAttribute("id", "searchBtn");
             previousSearchBtn.textContent = previousSearch[i];
         if (prevResults.innerHTML === null) {
             return;
