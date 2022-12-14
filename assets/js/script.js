@@ -1,4 +1,3 @@
-
 var searchBtnEl = document.querySelector("#searchBtn");
 var movieInputEl = document.querySelector("#movie-input");
 var movieDetailsEl = document.querySelector("#movie-details");
@@ -8,6 +7,7 @@ var apiKey = "f026d548";
 var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
 var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM";
 var prevResults = document.querySelector("#prev-results");
+var clearLocalBtn = document.querySelector(".clear-local");
 // var youtubeApiKey2 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
 var imdbApiKey = "k_9ultv29h";
 
@@ -111,6 +111,9 @@ var savePreviousSearch = function(search) {
 
 var handleSearch = function() {
     var search = movieInputEl.value.trim();
+    if (search === "") {
+        return;
+    }
     fetchResults(search);
     savePreviousSearch(search);
     console.log(search);
@@ -119,6 +122,10 @@ var handleSearch = function() {
 searchBtnEl.addEventListener("click", handleSearch, function(event) {
     event.preventDefault();
 });
+
+clearLocalBtn.addEventListener("click", function() {
+    localStorage.clear();
+  });
 
 displayPreviousSearch ();
 

@@ -19,11 +19,12 @@
               <div class="d-flex" role="search">
                 <input class="form-control me-2 align-self-center mx-4" id="movie-input" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn-lg btn-outline-success" id="searchBtn" type="submit">Search Movie</button>
+                <button onClick="window.location.reload()" type="submit" class=" clear-local btn-lg btn-outline-success mx-4" id="searchBtn">Clear Search</button>
               </div>
             </div>
           </nav>
     </header>
-    <main class="row justify-content-center my-4">
+    <main class="row justify-content-center my-3">
         <aside class="col-5 mr-4" id="left-side">
             <div class="card" id="movie-details">
             </div>
@@ -32,11 +33,11 @@
                 <div id="youtube-video">
                 </div>
         </aside>
-        <footer class ="fixed-bottom">
-            <div id ="prev-results" class="card-body bg-customnav">
-            </div>
-        </footer>
     </main>
+    <footer class ="fixed-bottom">
+        <div id ="prev-results" class="card-body bg-customnav">
+        </div>
+    </footer>
    
 </body>
 <script src="./assets/js/script.js"></script>
