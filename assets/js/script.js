@@ -65,7 +65,7 @@ var fetchimdbID = function(search) {
 
 // fetch results for search input to get movie/show details
 var fetchResults = function(movieInputEl) {
-    var apiUrl = `http://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`;
+    var apiUrl = `https://www.omdbapi.com/?s=${movieInputEl}&apikey=${apiKey}`;
     
     fetch(apiUrl)
     .then(function (response) {
