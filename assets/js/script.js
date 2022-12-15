@@ -16,6 +16,7 @@ var imdbApiKey = "k_9ultv29h";
 // function to create movie details section
 var displayMovieDetails = function (search) {
     movieDetailsEl.innerHTML = null;
+    movieDetailsEl.className = "card";
     var movieTitle = document.createElement("h2");
     movieTitle.className = "movie-title text-center my-4";
     movieTitle.textContent = "Movie Title: " + search.Search[0].Title;
@@ -37,13 +38,12 @@ var displayYoutubeUrl = function (data) {
     var videoId = data.videoId;
     var videoURL = `https://www.youtube.com/embed/${videoId}`
     var iframeEl = document.createElement("iframe");
-    iframeEl.setAttribute("width", "560");
+    iframeEl.setAttribute("width", "700");
     iframeEl.setAttribute("height", "400");
     iframeEl.setAttribute("src", videoURL);
-    iframeEl.setAttribute("frameborder", "0");
     iframeEl.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     iframeEl.setAttribute("allowfullscreen", 1);
-    iframeEl.className = "justify-content-center";
+    iframeEl.className = "embed-responsive-item";
     youtubeVideoEl.appendChild(iframeEl);
 };
 
