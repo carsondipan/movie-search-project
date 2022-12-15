@@ -19,36 +19,41 @@
         <!-- nav container -->
         <nav class="navbar bg-customnav">
             <div class="container-fluid px-2">
-                <h1>Movie Search</h1>
+                <h1 class="text-sm-center">Movie Search</h1>
                 <div class="d-flex" role="search">
                     <div class="alert-warning form-control align-self-center text-center hidden" id="notify" role="alert">
                        Enter a Title
                     </div>
                     <input class="form-control me-2 align-self-center mx-4" id="movie-input" type="search"
                         placeholder="Enter Title" aria-label="Search">
-                    <button class="btn-lg btn-outline-success form-control align-self-center" id="searchBtn" type="submit">Search Movie</button>
+                    <button class="btn-lg btn-outline-success form-control align-self-center" id="searchBtn" type="submit">Search</button>
                     <button onClick="window.location.reload()" type="submit"
-                        class="clear-local btn-lg btn-outline-success mx-4 form-control align-self-center" id="searchBtn">Clear Search</button>
+                        class="clear-local btn-lg btn-outline-success mx-4 form-control align-self-center" id="searchBtn">Clear</button>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="row intro justify-content-center mt-4">
+        <div class="col-lg-6 col-md-12 col-sm-12 bg-customnav intro text-center">
+            <h1>Search for a Movie or TV Show!</h1>
+        </div>
+    </div>
     <!-- main content container -->
-    <main class="row justify-content-center my-2">
+    <main class="row justify-content-center my-2 min-vh-100">
         <!-- aside for movie details -->
-        <aside class="col-lg-5 col-md-3 mr-4" id="left-side">
-            <div class="card" id="movie-details">
+        <aside class="col-lg-5 col-md-12 col-sm-12 my-3 mr-lg-5 align-self-center" id="left-side">
+            <div id="movie-details">
             </div>
         </aside>
         <!-- aside for youtube trailer -->
-        <aside class="col-lg-5 col-md-3 ml-5 align-self-center" id="right-side">
-            <div id="youtube-video">
+        <aside class="col-lg-5 col-md-12 col-sm-12 ml-6 align-self-center" id="right-side">
+            <div class="embed-responsive embed-responsive-16by9" id="youtube-video">
             </div>
         </aside>
     </main>
     <!-- footer with previous search buttons-->
-    <footer class="navbar bg-customnav fixed-bottom">
-        <div id="prev-results" class="card-body">
+    <footer class="row navbar mt-3 bg-customnav">
+        <div id="prev-results" class="col-lg-12 col-md-12 col-sm-12 card-body">
         </div>
     </footer>
 
