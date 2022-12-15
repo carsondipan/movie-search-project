@@ -14,7 +14,7 @@ display: none;
 h1 {
 font-size: 52px;
 font-weight: 800;
-color: #DE932C;
+color: #ffa903;
 }
     
 h2 {
@@ -27,11 +27,11 @@ font-weight: 600;
 }
 
 .bg-customnav  {
-    background-color: #1967BA;
+    background-color: #0e3fa9;
 }
 
 #searchBtn {
-    background-color: #DE932C;
+    background-color: #ffa903;
     color: black;
     border-color: #000000;
 }
@@ -39,4 +39,8 @@ font-weight: 600;
 .card {
     background-color: rgb(202, 201, 201);
     width: auto;
+}
+
+.hidden {
+    display: none;
 }
