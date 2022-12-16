@@ -33,7 +33,7 @@ var displayMovieDetails = function (search) {
 var displayYoutubeUrl = function (data) {
     youtubeVideoEl.innerHTML = null;
     var videoId = data.videoId;
-    var videoURL = `https://www.youtube.com/embed/${videoId}`
+    var videoURL = `https://www.youtube.com/embed/${videoId}`;
     var iframeEl = document.createElement("iframe");
     iframeEl.setAttribute("src", videoURL);
     iframeEl.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
