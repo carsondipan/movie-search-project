@@ -11,10 +11,8 @@ This application has been created to give it's USERs the ability to search for m
 OMBd API and IMBd API were used in the programming for this application to function. 
 
 ## Visuals
-![Homescreen](assets/images/homepage.png)
-![Homescreen with search results](assets/images/search-results.png)
-![Homescreen with previous search](assets/images/homepage-with-previous-search.png)
-![Homescreen in mobile view](assets/images/search-results-mobile-view.png)
+![Homescreen](assets/images/main-page.png)
+![Homescreen with search](assets/images/with-search.png)
 
 ## Authors
 Carson Di Pangrazio
