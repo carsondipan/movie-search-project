@@ -9,9 +9,6 @@ var clearLocalBtn = document.querySelector(".clear-local");
 var notify = document.querySelector("#notify");
 var apiKey = "f026d548";
 var imdbApiKey = "k_9ultv29h";
-// var youtubeApiKey = "AIzaSyCn90WcyhMlfORhRQMjSWg1jSozf4ZlfF4";
-// var youtubeApiKey2 = "AIzaSyAT9a8lxxa7X2nHaEXa7LhPl2IDCLTekyM";
-// var youtubeApiKey3 = "AIzaSyDWmXhjEBiBf76Wf4dj-E5_sc6KjDhagYU";
 
 // function to create movie details section
 var displayMovieDetails = function (search) {
@@ -38,8 +35,6 @@ var displayYoutubeUrl = function (data) {
     var videoId = data.videoId;
     var videoURL = `https://www.youtube.com/embed/${videoId}`
     var iframeEl = document.createElement("iframe");
-    iframeEl.setAttribute("width", "700");
-    iframeEl.setAttribute("height", "400");
     iframeEl.setAttribute("src", videoURL);
     iframeEl.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     iframeEl.setAttribute("allowfullscreen", 1);
